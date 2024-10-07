@@ -1,38 +1,36 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqbdlyi3ssg6v"]
+[gd_scene load_steps=19 format=3 uid="uid://cqbdlyi3ssg6v"]
 
-[ext_resource type="Script" path="res://rat.gd" id="1_7aylp"]
+[ext_resource type="Script" path="res://Enemies/rat.gd" id="1_m5ro8"]
 [ext_resource type="Texture2D" uid="uid://ca7rm03huvl0o" path="res://SGQ_Dungeon/all_unclassified/rat.png" id="2_40uk8"]
+[ext_resource type="Shader" path="res://Player/hit_blink.gdshader" id="2_kptnh"]
+[ext_resource type="Texture2D" uid="uid://erhcaqfportf" path="res://SGQ_Dungeon/characters/main/elf.png" id="3_110ap"]
 
-[sub_resource type="Animation" id="Animation_iego6"]
-length = 0.001
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01pij"]
+resource_local_to_scene = true
+shader = ExtResource("2_kptnh")
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="Animation" id="Animation_m23e4"]
+resource_name = "die"
+length = 1.50005
+loop_mode = 1
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer:speed_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_7xo5e"]
 resource_name = "idle_left"
-loop_mode = 1
+length = 0.666699
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,16 +51,63 @@ tracks/1/path = NodePath("AnimationPlayer:speed_scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666699),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.0, 4.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/blink_intensity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [SubResource("ShaderMaterial_01pij")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:material:resource_local_to_scene")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3f6vb"]
 resource_name = "idle_right"
 length = 0.6667
-loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -86,12 +131,47 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [4.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/blink_intensity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material:resource_local_to_scene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_yyvj3"]
 resource_name = "hurt_left"
-loop_mode = 2
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -117,10 +197,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [2.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_0on06"]
 resource_name = "walk_left"
-loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -146,10 +237,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [2.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/blink_intensity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wgag0"]
 resource_name = "walk_right"
-loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -175,12 +289,36 @@ tracks/1/keys = {
 "update": 0,
 "values": [2.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/blink_intensity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8c0sf"]
 _data = {
-"RESET": SubResource("Animation_iego6"),
-"idle_left": SubResource("Animation_7xo5e"),
-"idle_right": SubResource("Animation_3f6vb"),
+"die": SubResource("Animation_m23e4"),
+"hurt_left": SubResource("Animation_7xo5e"),
+"hurt_right": SubResource("Animation_3f6vb"),
 "spawn_left": SubResource("Animation_yyvj3"),
 "walk_left": SubResource("Animation_0on06"),
 "walk_right": SubResource("Animation_wgag0")
@@ -189,22 +327,77 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_e80c3"]
 radius = 5.0
 
-[node name="Rat" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_arnju"]
+atlas = ExtResource("3_110ap")
+region = Rect2(48, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h583"]
+atlas = ExtResource("3_110ap")
+region = Rect2(64, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw5yn"]
+atlas = ExtResource("3_110ap")
+region = Rect2(80, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20mxy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arnju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h583")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw5yn")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tg2xf"]
+radius = 6.0
+
+[node name="Rat" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_7aylp")
+script = ExtResource("1_m5ro8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_01pij")
 texture = ExtResource("2_40uk8")
 hframes = 4
 vframes = 6
-frame = 8
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8c0sf")
 }
-speed_scale = 2.0
+speed_scale = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_e80c3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_20mxy")
+animation = &"die"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_tg2xf")
+debug_color = Color(0.905414, 0.110164, 0.692896, 0.42)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

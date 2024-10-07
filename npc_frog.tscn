@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwr1xq7vs7i2f"]
+
+[ext_resource type="Texture2D" uid="uid://ce5dp8hu84sd3" path="res://SGQ_Dungeon/frognew.png" id="1_a0hjm"]
+
+[sub_resource type="Animation" id="Animation_2d8p2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrogSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_mmts6"]
+resource_name = "idle"
+length = 0.26667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrogSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o174q"]
+_data = {
+"RESET": SubResource("Animation_2d8p2"),
+"idle": SubResource("Animation_mmts6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdjut"]
+radius = 3.0
+
+[node name="NPC" type="CharacterBody2D"]
+
+[node name="FrogSpriteSheet" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_a0hjm")
+flip_h = true
+hframes = 6
+vframes = 4
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o174q")
+}
+speed_scale = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_qdjut")

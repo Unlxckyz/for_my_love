@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://c3wanpc0e8crj"]
+[gd_scene load_steps=10 format=4 uid="uid://c3wanpc0e8crj"]
 
 [ext_resource type="Script" path="res://Mapas/mapa_1.gd" id="1_gstoy"]
 [ext_resource type="Texture2D" uid="uid://bx2wvlvn2qalo" path="res://SGQ_Dungeon/all_unclassified/surground.png" id="1_p7l3j"]
 [ext_resource type="Texture2D" uid="uid://8gka4e457h1v" path="res://SGQ_Dungeon/all_unclassified/walls.png" id="2_1vprk"]
 [ext_resource type="PackedScene" uid="uid://dk2m608d77s4h" path="res://Player/player.tscn" id="3_217w7"]
+[ext_resource type="PackedScene" uid="uid://cwr1xq7vs7i2f" path="res://npc_frog.tscn" id="5_bwd5a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fbfhm"]
 texture = ExtResource("1_p7l3j")
@@ -1284,5 +1285,8 @@ progress = 729.005
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="NPC" parent="." instance=ExtResource("5_bwd5a")]
+position = Vector2(295, 117)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
