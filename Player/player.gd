@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Character Stats
 @export var speed = 100
-@export var health: int
+@export var health = 50
 @export var mp: int # Mana Points (MP)
 @export var vit: int # Vitality (affects health)
 @export var wis: int # Wisdom (affects magic-related stats)
@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var fame: int 
 #Items
 @onready var sword_preload = preload("res://Weapons/Sword.tscn")
-@onready var spell_preload = preload("res://spell.tscn")
+@onready var spell_preload = preload("res://Weapons/Spells/InitialSpell/spell.tscn")
 
 var sword = null
 var spell = null
@@ -23,26 +23,38 @@ var spell = null
 
 
 #CharacterUI
-@export var animation = AnimationPlayer
+@onready var animation = $AnimationPlayer
 @export var PointWeapon = Marker2D
 
 #Miscellanius
 var last_direction
 var direction = Vector2.ZERO
-
+var hurt = false
+var respawn = false
 
 # Skills
 @export var skills = Array()
+
 func _process(delta: float) -> void:
-	move()
-	checkAttack()
+	if not hurt and respawn:
+		move()
+		checkAttack()
+	if not respawn:
+		animation.play("Respawn")
+		
+		
+	
 	if sword != null:
 		sword.position = PointWeapon.global_position
 	if spell != null:
 		spell.position = global_position
+
 func _ready() -> void:
 	animation = $AnimationPlayer
+	
 	last_direction = "right"
+	
+	
 
 #Funçoes de Movimento
 
@@ -119,3 +131,22 @@ func checkPositionMouseToAttack(direction_mouse,animation_sword):
 		else:
 			animation_sword.play("attack_up")  # Mouse para cima
 		
+func take_damage(damage):
+	print("Voce levou: ", damage)
+	health-= damage
+	if last_direction == "right":
+		animation.play("hurt")
+	else:
+		animation.play("hurt_left")
+	
+	hurt = true
+	if health <=0:
+		get_tree().reload_current_scene()
+	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "hurt" or "hurt_left":
+		hurt = false
+	if anim_name == "Respawn":
+		respawn = true

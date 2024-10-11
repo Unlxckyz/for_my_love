@@ -370,7 +370,7 @@ material = SubResource("ShaderMaterial_01pij")
 texture = ExtResource("2_40uk8")
 hframes = 4
 vframes = 6
-frame = 1
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

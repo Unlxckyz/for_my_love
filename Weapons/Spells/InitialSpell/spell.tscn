@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://yhs7sjoy875l"]
 
-[ext_resource type="Script" path="res://spell.gd" id="1_3hg8g"]
+[ext_resource type="Script" path="res://Weapons/Spells/InitialSpell/spell.gd" id="1_3hg8g"]
 [ext_resource type="Texture2D" uid="uid://bf246j4kn54hv" path="res://SGQ_Dungeon/weapons_and_projectiles/weapons_animated.png" id="1_y3g3o"]
 
 [sub_resource type="Animation" id="Animation_n20jg"]

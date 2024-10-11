@@ -1,6 +1,6 @@
 extends Enemy
 
 func _init() -> void:
-	health = 20
+	health = 45
 	speed = 50
 	
