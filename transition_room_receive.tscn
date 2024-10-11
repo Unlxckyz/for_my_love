@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://olnetxhphfqd"]
-
-[node name="TransitionRoomReceive" type="Marker2D"]
-position = Vector2(779, 520)

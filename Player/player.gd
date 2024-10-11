@@ -1,121 +1,121 @@
 extends CharacterBody2D
 
-# Character Stats
-@export var speed = 100
-@export var health: int
-@export var mp: int # Mana Points (MP)
-@export var vit: int # Vitality (affects health)
-@export var wis: int # Wisdom (affects magic-related stats)
-@export var att: int # Attack power
-@export var def: int # Defense
-@export var dex: int # Dexterity (affects agility, evasion, etc.)
-@export var fame: int 
-#Items
+var speed = 100
+var hp = 100
+@onready var animation = $AnimationPlayer
+@onready var sprite = $Elf
+@onready var point = $PointWeapon  
 @onready var sword_preload = preload("res://Weapons/Sword.tscn")
 @onready var spell_preload = preload("res://spell.tscn")
+@onready var spell_proj_preload = preload("res://spell_proj.tscn")
+var last_direction = Vector2.ZERO
+var sword_instance = null  
+var spell_instance = null
+var can_shoot_spell = true
 
-var sword = null
-var spell = null
-# Experience and Leveling
-@export var xp: int
-@export var xp_to_level_up: int
-@export var level: int
-
-
-#CharacterUI
-@export var animation = AnimationPlayer
-@export var PointWeapon = Marker2D
-
-#Miscellanius
-var last_direction
-var direction = Vector2.ZERO
-
-
-# Skills
-@export var skills = Array()
-func _process(delta: float) -> void:
-	move()
-	checkAttack()
-	if sword != null:
-		sword.position = PointWeapon.global_position
-	if spell != null:
-		spell.position = global_position
 func _ready() -> void:
-	animation = $AnimationPlayer
-	last_direction = "right"
+	animation.play("Respawn")
 
-#Funçoes de Movimento
-
-func move():
-	direction = Vector2.ZERO 
+func _process(delta: float) -> void:
+	var direction = Vector2.ZERO 
+	
+	
+	# Movimento e animação
 	if Input.is_action_pressed("up"):
 		direction.y -= 1
-		check_last_direction()
+		_play_walk_animation()
 	if Input.is_action_pressed("down"):
 		direction.y += 1
-		check_last_direction()
-		
+		_play_walk_animation()
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 		animation.play("walk_right")
-		last_direction = "right"
+		last_direction = Vector2(1, 0)  
 	if Input.is_action_pressed("left"):
 		direction.x -= 1
 		animation.play("walk_left")
-		last_direction = "left" 
+		last_direction = Vector2(-1, 0)  
 
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 		velocity = speed * direction
 		move_and_slide()  
 	else:
-		check_idle()
+		_play_idle_animation()
+
+	if Input.is_action_pressed("aim"):
+		attack_close("sword")
+	if Input.is_action_pressed("spell"):
+		if can_shoot_spell:
+			attack_close("spell")
+		else:
+			return
 		
 		
-func check_last_direction():
-	if last_direction == "right":
+func _play_walk_animation() -> void:
+	if last_direction.x > 0:
 		animation.play("walk_right")
-	if last_direction == "left":
+	elif last_direction.x < 0:
 		animation.play("walk_left")
-		
-func check_idle():
-	if direction == Vector2.ZERO and last_direction == "right":
-			animation.play("idle_right")
-	elif direction == Vector2.ZERO and last_direction == "left":
+
+func _play_idle_animation() -> void:
+	if last_direction == Vector2(1, 0):
+		animation.play("idle_right")
+	elif last_direction == Vector2(-1, 0):
 		animation.play("idle_left")
 
-#Funçoes para ataque
+func attack_close(type: String) -> void:
+	if sword_instance == null and type == "sword":
+		sword_instance = sword_preload.instantiate()
+	elif spell_instance == null and type == "spell":
+		spell_instance = spell_preload.instantiate()
 
-func checkAttack():
-	var direction_mouse = get_local_mouse_position()
-	if Input.is_action_pressed("aim") and sword == null:
-		sword = sword_preload.instantiate()
-		sword.position = PointWeapon.global_position
-		sword.direction = direction_mouse
-		get_parent().add_child(sword)
-		var animation_sword = sword.get_node("AnimationPlayer")
-		checkPositionMouseToAttack(direction_mouse,animation_sword)
-	if Input.is_action_pressed("spell") and spell == null:
-		spell = spell_preload.instantiate()
-		spell.position = global_position
-		get_parent().add_child(spell)
-		var spell_animation = spell.get_node("AnimationPlayer")
-		spell_animation.play("attack_down")
-		
-		
-		
+	point.add_child(sword_instance if type == "sword" else spell_instance)
+	(sword_instance if type == "sword" else spell_instance).position = Vector2.ZERO
+
+	var weapon_animation = (sword_instance if type == "sword" else spell_instance).get_node("AnimationPlayer")
+	var mouse_position = get_global_mouse_position()
+	var player_position = global_position
+	var direction_to_mouse = (mouse_position - player_position).normalized()
+
+	if type == "spell":
+		_cast_spell(direction_to_mouse)
 	
-		
-func checkPositionMouseToAttack(direction_mouse,animation_sword):
-	if abs(direction_mouse.x) > abs(direction_mouse.y):
-		if direction_mouse.x > 0:
-			animation_sword.play("attack_right")  # Mouse à direita
+	# Define a animação baseada na direção do mouse
+	if abs(direction_to_mouse.x) > abs(direction_to_mouse.y):
+		if direction_to_mouse.x > 0:
+			weapon_animation.play("attack_right")
 		else:
-			animation_sword.play("attack_left")  # Mouse à esquerda
+			weapon_animation.play("attack_left")
 	else:
-		
-		if direction_mouse.y > 0:
-			animation_sword.play("attack_down")  # Mouse para baixo
+		if direction_to_mouse.y < 0:
+			weapon_animation.play("attack_up")
 		else:
-			animation_sword.play("attack_up")  # Mouse para cima
-		
+			weapon_animation.play("attack_down")
+func criaTimer(time):
+	var new_timer = Timer.new()
+	new_timer.wait_time = time
+	new_timer.timeout.connect(Callable(self, "on_timer_timeout"))
+	new_timer.start()
+	
+	
+	
+	
+func _cast_spell(direction: Vector2) -> void:
+	var point_spawn = spell_instance.get_node("Marker2D")
+	var spell_proj = spell_proj_preload.instantiate()
+	spell_proj.position = point_spawn.global_position
+	spell_proj.direction = direction
+	spell_proj.rotation = direction.angle()
+
+	var spell_animation = spell_proj.get_node("AnimationPlayer")
+	spell_animation.play("shoot")
+	get_parent().add_child(spell_proj)
+	criaTimer(1.0)
+	can_shoot_spell = false
+	
+func on_timer_timeout():
+	can_shoot_spell = true
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Respawn":
+		last_direction = Vector2(1, 0)

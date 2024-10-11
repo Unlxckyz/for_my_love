@@ -385,13 +385,11 @@ _data = {
 radius = 3.0
 height = 12.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "PointWeapon") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 material = SubResource("ShaderMaterial_wksfc")
 motion_mode = 1
 script = ExtResource("1_f5grr")
-animation = NodePath("AnimationPlayer")
-PointWeapon = NodePath("PointWeapon")
 
 [node name="Elf" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -409,7 +407,6 @@ speed_scale = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4.7, 4.7)
-position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -417,10 +414,4 @@ shape = SubResource("CapsuleShape2D_rc0qs")
 
 [node name="PointWeapon" type="Marker2D" parent="."]
 
-[node name="TimerSpell" type="Timer" parent="."]
-one_shot = true
-
-[node name="TimerSword" type="Timer" parent="."]
-
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="TimerSpell" to="." method="_on_timer_spell_timeout"]
