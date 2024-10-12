@@ -22,12 +22,3 @@ func shoot_bullet():
 
 func _on_timer_timeout() -> void:
 	shoot_bullet()
-
-func take_damage():
-	hp -= 1
-	print("dano")
-	if hp <= 0:
-		queue_free()
-func _on_area_2d_body_entered(body) -> void:
-	if body.is_in_group("weapons"):
-		self.take_damage()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c7gl2uyjyop0"]
 
 [ext_resource type="Texture2D" uid="uid://bf246j4kn54hv" path="res://SGQ_Dungeon/weapons_and_projectiles/weapons_animated.png" id="1_fjwrj"]
-[ext_resource type="Script" path="res://Weapons/sword.gd" id="1_q6y75"]
+[ext_resource type="Script" path="res://Weapons/Weapons.gd" id="1_q6y75"]
 
 [sub_resource type="Animation" id="Animation_v4pmu"]
 length = 0.001
