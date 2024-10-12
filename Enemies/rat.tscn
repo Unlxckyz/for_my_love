@@ -360,7 +360,6 @@ animations = [{
 radius = 6.0
 
 [node name="Rat" type="CharacterBody2D" groups=["Enemies"]]
-z_index = 1
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8nuhnlx32ydy"]
+[gd_scene load_steps=18 format=3 uid="uid://8nuhnlx32ydy"]
 
 [ext_resource type="Script" path="res://Mapas/world.gd" id="1_0d5kv"]
 [ext_resource type="Texture2D" uid="uid://dmabaeqxued8k" path="res://SGQ_Dungeon/all_unclassified/grounds.png" id="1_u1i0k"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcxdsbrspnjte" path="res://traps/torret.tscn" id="8_421mx"]
 [ext_resource type="PackedScene" uid="uid://cqbdlyi3ssg6v" path="res://Enemies/rat.tscn" id="9_c6pr4"]
 [ext_resource type="PackedScene" uid="uid://jomvnd6tjr2a" path="res://traps/spike_trap.tscn" id="10_q5ac2"]
+[ext_resource type="PackedScene" uid="uid://cma250s3yamid" path="res://traps/Actives/Alavanca.tscn" id="11_g61e4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cq114"]
 texture = ExtResource("1_u1i0k")
@@ -597,6 +598,10 @@ sources/1 = SubResource("TileSetAtlasSource_ylyq5")
 sources/2 = SubResource("TileSetAtlasSource_airm6")
 sources/4 = SubResource("TileSetAtlasSource_xbl13")
 
+[sub_resource type="LabelSettings" id="LabelSettings_crmql"]
+font_size = 22
+font_color = Color(0.249339, 0.689344, 0.770357, 1)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_0d5kv")
 
@@ -615,41 +620,41 @@ layer_3/tile_data = PackedInt32Array(1703976, 4, 3, 1703969, 786436, 0, 1703970,
 
 [node name="Player" parent="." instance=ExtResource("5_wki1a")]
 z_index = 2
-position = Vector2(996, 159)
+position = Vector2(999, 374)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Armadilhas_Area1" type="Node2D" parent="."]
 
-[node name="Torret" parent="Armadilhas_Area1" instance=ExtResource("8_421mx")]
+[node name="Torret" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("8_421mx")]
 position = Vector2(1031, 548)
 
-[node name="Torret2" parent="Armadilhas_Area1" instance=ExtResource("8_421mx")]
+[node name="Torret2" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("8_421mx")]
 position = Vector2(1032, 498)
 
-[node name="Torret3" parent="Armadilhas_Area1" instance=ExtResource("8_421mx")]
+[node name="Torret3" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("8_421mx")]
 position = Vector2(976, 344)
 rotation = -1.5708
 direction = Vector2(0, 1)
 
-[node name="Torret4" parent="Armadilhas_Area1" instance=ExtResource("8_421mx")]
+[node name="Torret4" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("8_421mx")]
 position = Vector2(943, 344)
 rotation = -1.5708
 direction = Vector2(0, 1)
 
-[node name="SpikeTrap" parent="Armadilhas_Area1" instance=ExtResource("10_q5ac2")]
+[node name="SpikeTrap" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("10_q5ac2")]
 position = Vector2(976, 466)
 
-[node name="SpikeTrap2" parent="Armadilhas_Area1" instance=ExtResource("10_q5ac2")]
+[node name="SpikeTrap2" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("10_q5ac2")]
 position = Vector2(1013, 466)
 
-[node name="SpikeTrap3" parent="Armadilhas_Area1" instance=ExtResource("10_q5ac2")]
+[node name="SpikeTrap3" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("10_q5ac2")]
 position = Vector2(939, 466)
 
-[node name="SpikeTrap4" parent="Armadilhas_Area1" instance=ExtResource("10_q5ac2")]
+[node name="SpikeTrap4" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("10_q5ac2")]
 position = Vector2(939, 400)
 
-[node name="SpikeTrap5" parent="Armadilhas_Area1" instance=ExtResource("10_q5ac2")]
+[node name="SpikeTrap5" parent="Armadilhas_Area1" groups=["traps"] instance=ExtResource("10_q5ac2")]
 position = Vector2(976, 400)
 
 [node name="AreasDeTeleporte" type="Node2D" parent="."]
@@ -686,6 +691,9 @@ position = Vector2(1001, 331)
 [node name="Marker2D6" type="Marker2D" parent="AreasDeTeleporte/Markers" groups=["teleport_markers"]]
 position = Vector2(1001, 246)
 
+[node name="Node2D" parent="AreasDeTeleporte" instance=ExtResource("11_g61e4")]
+position = Vector2(1022, 345)
+
 [node name="Area2D4" parent="AreasDeTeleporte" instance=ExtResource("7_ds0pd")]
 position = Vector2(389, 521)
 
@@ -694,17 +702,33 @@ position = Vector2(1001, 246)
 
 [node name="InimigosTemporario" type="Node2D" parent="."]
 
-[node name="Rat" parent="InimigosTemporario" instance=ExtResource("9_c6pr4")]
-position = Vector2(550, 519)
-
-[node name="Rat2" parent="InimigosTemporario" instance=ExtResource("9_c6pr4")]
-position = Vector2(587, 418)
-
 [node name="Rat3" parent="InimigosTemporario" instance=ExtResource("9_c6pr4")]
 position = Vector2(1016, 356)
 
 [node name="Rat4" parent="InimigosTemporario" instance=ExtResource("9_c6pr4")]
 position = Vector2(1004, 525)
 
-[node name="SpikeTrap" parent="." instance=ExtResource("10_q5ac2")]
+[node name="Rat5" parent="InimigosTemporario" instance=ExtResource("9_c6pr4")]
+position = Vector2(598, 496)
+
+[node name="Rat6" parent="InimigosTemporario" instance=ExtResource("9_c6pr4")]
+position = Vector2(613, 450)
+
+[node name="SpikeTrap" parent="." groups=["traps"] instance=ExtResource("10_q5ac2")]
 position = Vector2(1013, 400)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -68.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_crmql")
+horizontal_alignment = 1

@@ -22,3 +22,7 @@ func shoot_bullet():
 
 func _on_timer_timeout() -> void:
 	shoot_bullet()
+
+func disable_trap():
+	timer.stop()
+	

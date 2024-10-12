@@ -23,3 +23,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func apply_knockback_force(target):
 	var knockback_direction = Vector2(-1,0)
 	target.position += knockback_direction * knockback_force * get_process_delta_time()
+
+func disable_trap():
+	$CollisionShape2D.disabled = true  
+	$AnimationPlayer.stop()  

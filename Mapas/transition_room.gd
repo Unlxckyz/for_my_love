@@ -22,7 +22,7 @@ func find_closest_marker(player_position: Vector2) -> Marker2D:
 					closest_marker = marker
 	
 	return closest_marker
-
+#Anotaçoes ----------> find_closest_marker
 # Quando o player entra na Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and is_active:
