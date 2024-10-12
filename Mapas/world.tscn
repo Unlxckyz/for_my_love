@@ -620,7 +620,7 @@ layer_3/tile_data = PackedInt32Array(1703976, 4, 3, 1703969, 786436, 0, 1703970,
 
 [node name="Player" parent="." instance=ExtResource("5_wki1a")]
 z_index = 2
-position = Vector2(999, 374)
+position = Vector2(583, 529)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
