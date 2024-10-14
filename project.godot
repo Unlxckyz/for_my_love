@@ -27,6 +27,7 @@ weapons=""
 room=""
 teleport_markers=""
 traps=""
+colision_wall=""
 
 [input]
 
