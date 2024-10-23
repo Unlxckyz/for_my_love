@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogicGlossary" load_steps=2 format=3 uid="uid://f45p3ulvsnuh"]
+
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Glossary/glossary_resource.gd" id="1_3vu24"]
+
+[resource]
+script = ExtResource("1_3vu24")
+entries = {
+"Inveja": {
+"case_sensitive": true,
+"name": "Inveja",
+"text": "Inveja é a personificação de um sentimento corrosivo, uma entidade que se alimenta do desejo insaciável pelo que os outros possuem.",
+"title": "Inveja"
+}
+}
+enabled = true
+_translation_id = ""
+_translation_keys = {}

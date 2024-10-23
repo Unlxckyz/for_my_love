@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvawpmsrhrdx6"]
+
+[ext_resource type="Script" path="res://Weapons/tools/smoke.gd" id="1_0v4rr"]
+[ext_resource type="Texture2D" uid="uid://bdfrh148olyhk" path="res://Weapons/tools/FX001_01.png" id="1_v1qm7"]
+[ext_resource type="Texture2D" uid="uid://84nubl5d6od3" path="res://Weapons/tools/FX001_02.png" id="2_4pmwi"]
+[ext_resource type="Texture2D" uid="uid://j6bay0qpo8t" path="res://Weapons/tools/FX001_03.png" id="3_f1dwa"]
+[ext_resource type="Texture2D" uid="uid://s2mq5h6pcv1u" path="res://Weapons/tools/FX001_04.png" id="4_hv65e"]
+[ext_resource type="Texture2D" uid="uid://d12020t3roii8" path="res://Weapons/tools/FX001_05.png" id="5_lp7hy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5500f"]
+atlas = ExtResource("1_v1qm7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d2o5"]
+atlas = ExtResource("2_4pmwi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoao1"]
+atlas = ExtResource("3_f1dwa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5eo5"]
+atlas = ExtResource("4_hv65e")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3wt7"]
+atlas = ExtResource("5_lp7hy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6xmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5500f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d2o5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoao1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5eo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3wt7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="smoke" type="Node2D"]
+script = ExtResource("1_0v4rr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j6xmm")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

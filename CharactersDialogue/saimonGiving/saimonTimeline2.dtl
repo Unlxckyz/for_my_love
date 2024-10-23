@@ -1,0 +1,25 @@
+- O que é a Inveja?
+	Luna: O que exatamente é essa Inveja que tomou seu coração?
+	[wait time="0.5"]
+	Saimon: A Inveja... não é apenas uma criatura. Ela é um sentimento, uma força.
+	Saimon: Se alimenta das fraquezas, da insatisfação. Mesmo o menor desejo de ser algo a mais, de ter o que não é seu... ela se aproveita disso.
+	Saimon: Quando eu percebi, já era tarde demais. Ela tomou tudo. Minhas ambições, minhas esperanças... e meu coração.
+	- Por que você entrou na caverna?
+	Luna: Por que você veio para esta caverna? O que você estava procurando?
+	Saimon: Eu entrei aqui buscando poder. Fama. Eu queria ser o melhor... superar todos ao meu redor.
+	Saimon: A Inveja se alimentou desse desejo, e eu... eu fui tolo o suficiente para seguir até ela, acreditando que a vitória me traria as recompesas que tantam falam.
+	Saimon: Mas no final, perdi tudo. E agora me sinto... apenas vazio.
+	- Eu realmente posso recuperar seu coração?
+	Luna: Você acha que eu realmente posso recuperar seu coração?
+	Saimon: Eu... não sei.O caminho é perigoso e a Inveja, é muito mais do que você pode imaginar. Mas você ainda tem algo que eu perdi\: um coração valente e fé em si mesma.
+	Saimon: Talvez isso seja o suficiente. Se conseguir enfrentá-la, então... sim, pode ser que consiga restaurar o que foi tomado de mim.
+	Saimon: Mas cuidado, ela conhece suas fraquezas, assim como conheceu as minhas.
+	Saimon: O que você busca exatamente aqui?
+	- O coração de quem eu amava foi tomado derrepente.
+		Saimon: Nossa, nem sei o que dizer....
+		Saimon: Boa sorte. O que precisar de informações estaria a disposição.
+	- Não dizer nada.
+		Saimon: Bom, é uma boa escolha não confiar em qualquer um.
+		Saimon: Boa sorte, na sua jornada, caso queira mais informações pode me perguntar.
+	[signal arg="final_timeline2"]
+	[signal arg="exit_saimon"]

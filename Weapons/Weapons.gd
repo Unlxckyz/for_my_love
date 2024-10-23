@@ -9,6 +9,7 @@ var knockback_force = 300.0
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
 		body.take_damage(damage)
+		body._slash_effect()
 		if knockback_force > 0:
 			apply_knockback_force(body)
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

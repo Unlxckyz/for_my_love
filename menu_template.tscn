@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://cslxe0jyi7rph"]
+
+[ext_resource type="Texture2D" uid="uid://oqd63owvrucn" path="res://SGQ_Dungeon/grounds_and_walls/SGQ_ui/game_ui/inventory.png" id="1_umcv6"]
+
+[sub_resource type="Animation" id="Animation_mmtup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(604.5, 409)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7]
+}
+
+[sub_resource type="Animation" id="Animation_ct7tn"]
+resource_name = "scroll_up"
+length = 0.26667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(604.5, 459), Vector2(604.5, 422), Vector2(604.5, 386), Vector2(604.5, 346), Vector2(604.5, 317), Vector2(604.5, 280), Vector2(604.5, 281)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eshnk"]
+_data = {
+"RESET": SubResource("Animation_mmtup"),
+"scroll_up": SubResource("Animation_ct7tn")
+}
+
+[node name="Inventory" type="Sprite2D"]
+modulate = Color(0.306084, 0.000310347, 0.919663, 0.854902)
+position = Vector2(604.5, 409)
+scale = Vector2(38.4375, 23.3125)
+texture = ExtResource("1_umcv6")
+region_enabled = true
+region_rect = Rect2(95.9002, 25.6905, 16.2183, 16.0238)
+
+[node name="Inventory" type="Sprite2D" parent="."]
+position = Vector2(-0.14309, -7.07816)
+scale = Vector2(0.9978, 0.0674874)
+texture = ExtResource("1_umcv6")
+region_enabled = true
+region_rect = Rect2(95.2009, 7.60954, 17.3359, 4.36864)
+
+[node name="Inventory2" type="Sprite2D" parent="."]
+position = Vector2(-0.14309, 7.29181)
+scale = Vector2(0.9978, 0.0674874)
+texture = ExtResource("1_umcv6")
+region_enabled = true
+region_rect = Rect2(95.2009, 7.60954, 17.3359, 4.36864)
+
+[node name="Inventory3" type="Sprite2D" parent="."]
+position = Vector2(-8.21291, 0.19303)
+scale = Vector2(0.117567, 0.319527)
+texture = ExtResource("1_umcv6")
+region_enabled = true
+region_rect = Rect2(86.4112, 7.28124, 7.9138, 49.1015)
+
+[node name="Inventory4" type="Sprite2D" parent="."]
+position = Vector2(8.16067, 0.0214477)
+scale = Vector2(0.102758, 0.326531)
+texture = ExtResource("1_umcv6")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(86.4112, 7.28124, 7.9138, 49.1015)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eshnk")
+}
+autoplay = "scroll_up"
+speed_scale = 0.7

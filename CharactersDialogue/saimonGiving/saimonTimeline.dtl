@@ -1,0 +1,18 @@
+Saimon: Você é a próxima, não é? Mais uma que veio desafiar o impossível...
+Saimon: Eu era como você. Pensava que podia vencer as trevas com a espada em mãos. Mas, acredite... é mais difícil do que parece.
+Saimon: Não sou mais capaz de lutar. Minha força se foi com meu coração, e tudo o que restou foi a sombra do que eu era.
+- O que aconteceu com você?
+	Saimon: Eu... perdi. A inveja tomou meu coração. Agora, estou preso aqui, como muitos outros.
+	- Eu vou te ajudar. Vou recuperar seu coração e te libertar.
+[wait time="1.0"]
+Saimon: Qual é seu nome...?
+[text_input text="Digite seu nome" var="Nome" default="Luna"]
+Saimon: {Nome}, você é corajosa, mas também assim era eu... Vamos ver se consegue fazer o que eu não consegui.
+Saimon: Pegue minha espada. Ela foi minha fiel companheira, mas agora... não me serve mais. Talvez, nas suas mãos, ela encontre um propósito.
+join sword right
+[wait time="1.0"]
+sword: Você obteve a espada de Saimon.
+[signal arg="espada_saimon"]
+Saimon: Leve-a. E quando estiver pronta, volte. Eu estarei aqui... aguardando. Se derrotar a inveja, talvez possamos nos libertar desse pesadelo.
+[signal arg="final_timeline1"]
+[signal arg="exit_saimon"]

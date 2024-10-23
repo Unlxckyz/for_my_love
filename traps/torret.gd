@@ -6,7 +6,11 @@ var shoot = true
 var hp = 3
 @onready var spawn = $Marker2D
 @onready var timer = $Timer
+@export var timerz : float
 
+func _ready() -> void:
+	if timerz > 0:
+		timer.wait_time = timerz
 
 func shoot_bullet():
 	var bullet = bullet_preload.instantiate()

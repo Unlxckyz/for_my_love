@@ -500,7 +500,7 @@ motion_mode = 1
 script = ExtResource("1_f5grr")
 PointWeapon = NodePath("PointWeapon")
 
-[node name="Elf" type="Sprite2D" parent="."]
+[node name="Elf" type="Sprite2D" parent="." groups=["Player"]]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_qe3fd")
 scale = Vector2(0.8125, 0.8125)
@@ -515,7 +515,7 @@ libraries = {
 speed_scale = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.7, 4.7)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 

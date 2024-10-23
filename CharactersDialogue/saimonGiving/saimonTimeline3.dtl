@@ -1,0 +1,18 @@
+- O que aconteceu com este lugar?
+	Este lugar... sempre foi assim? Uma caverna cheia de trevas?
+	Saimon: Nem sempre. Dizem que, muito antes de eu chegar, era um lugar de luz, onde guerreiros vinham se purificar. Mas algo mudou... As "Sombras sombrias" ,risos, começaram a se manifestar.
+	Saimon: Talvez as pessoas que entravam aqui carregassem consigo seus próprios fardos, e as sombras... as absorveram.
+	Saimon: Agora, é um labirinto de sentimentos corrompidos.  E aqueles que não são fortes o suficiente acabam como eu, sem coração.
+	jump 
+- Como você perdeu seu coração?
+	Você disse que perdeu seu coração... mas como aconteceu?
+	Saimon: Foi gradual. No início, não percebi. Estava tão focado em ser o melhor que ignorei os sinais. A caverna se alimenta das nossas fraquezas, e eu me deixei levar.
+	Saimon: Cada desafio que eu enfrentava me deixava mais obcecado em superar os outros, em ser superior.
+	Saimon: Quando finalmente estava no caminho de encontrar a Inveja, já estava tão consumido pelo desejo de ser algo mais... que ela só precisou aparecer por um instante estender a mão para tomar o que era meu.
+	jump 
+- Por que não sai daqui?
+	Por que você não tenta sair desta caverna?
+	Saimon: Não posso. Sem meu coração, estou preso. Mesmo que meus pés pudessem me levar para fora, minha alma está enraizada aqui. É como se algo me mantivesse acorrentado a este lugar.
+	jump 
+- Sair
+	[signal arg="exit_saimon"]

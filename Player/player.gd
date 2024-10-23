@@ -1,7 +1,7 @@
 extends CharacterBody2D
-
+class_name Player
 # Character Stats
-@export var speed = 100
+@export var speed = 80
 @export var health = 50
 @export var mp: int # Mana Points (MP)
 @export var vit: int # Vitality (affects health)
@@ -13,9 +13,11 @@ extends CharacterBody2D
 #Items
 @onready var sword_preload = preload("res://Weapons/Sword.tscn")
 @onready var spell_preload = preload("res://Weapons/Spells/InitialSpell/spell.tscn")
+@onready var mine_preload = preload("res://Weapons/tools/picareta.tscn")
 
 var sword = null
 var spell = null
+var mine = null
 # Experience and Leveling
 @export var xp: int
 @export var xp_to_level_up: int
@@ -31,19 +33,31 @@ var last_direction
 var direction = Vector2.ZERO
 var hurt = false
 var respawn = false
+var is_chating = Global.is_chating
+var can_sword = Global.can_sword
 
 # Skills
 @export var skills = Array()
 
 func _process(delta: float) -> void:
+	
+	
+	if Global.is_chating == 0:
+		if last_direction == "left":
+			animation.play("idle_left")
+		else:
+			animation.play("idle_right")
+		return
 	if not hurt and respawn:
 		move()
+		
 		checkAttack()
 	if not respawn:
 		animation.play("Respawn")
 		
 		
-	
+	if mine != null:
+		mine.position = PointWeapon.global_position
 	if sword != null:
 		sword.position = PointWeapon.global_position
 	if spell != null:
@@ -100,7 +114,7 @@ func check_idle():
 
 func checkAttack():
 	var direction_mouse = get_local_mouse_position()
-	if Input.is_action_pressed("aim") and sword == null:
+	if Input.is_action_pressed("aim") and sword == null and Global.can_sword:
 		sword = sword_preload.instantiate()
 		sword.position = PointWeapon.global_position
 		sword.direction = direction_mouse
@@ -113,6 +127,15 @@ func checkAttack():
 		get_parent().add_child(spell)
 		var spell_animation = spell.get_node("AnimationPlayer")
 		spell_animation.play("attack_down")
+	if Input.is_action_just_pressed("mine") and mine == null:
+		mine = mine_preload.instantiate()
+		mine.position = PointWeapon.global_position
+		mine.direction = direction_mouse
+		get_parent().add_child(mine)
+		var mine_animation = mine.get_node("AnimationPlayer")
+		checkPositionMouseToAttack(direction_mouse,mine_animation)
+		
+		
 		
 		
 		
@@ -133,15 +156,18 @@ func checkPositionMouseToAttack(direction_mouse,animation_sword):
 		
 func take_damage(damage):
 	print("Voce levou: ", damage)
-	health-= damage
+	Global.hp_player -= damage
 	if last_direction == "right":
 		animation.play("hurt")
 	else:
 		animation.play("hurt_left")
 	
 	hurt = true
-	if health <=0:
+	if Global.hp_player <=0:
+		Global.player_heart -= 1
+	if Global.player_heart < 0:
 		get_tree().reload_current_scene()
+		
 	
 
 

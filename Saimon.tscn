@@ -1,0 +1,268 @@
+[gd_scene load_steps=16 format=3 uid="uid://cdh8utsyh400u"]
+
+[ext_resource type="Script" path="res://saimon.gd" id="1_jwwbm"]
+[ext_resource type="Texture2D" uid="uid://bghvkm7laxs4l" path="res://npc.png" id="1_pu7em"]
+[ext_resource type="Texture2D" uid="uid://btbl6q0wx31m3" path="res://CharactersDialogue/IconsFlat-16.png" id="3_6p3uj"]
+[ext_resource type="Texture2D" uid="uid://clwhgydyyqc6s" path="res://CharactersDialogue/New Piskel (4).png" id="4_54st6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80pns"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ihbbc"]
+radius = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyeca"]
+atlas = ExtResource("4_54st6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq1qv"]
+atlas = ExtResource("4_54st6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8r6c"]
+atlas = ExtResource("4_54st6")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ydye"]
+atlas = ExtResource("4_54st6")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndrql"]
+animations = [{
+"frames": [{
+"duration": 2.4,
+"texture": SubResource("AtlasTexture_vyeca")
+}, {
+"duration": 2.6,
+"texture": SubResource("AtlasTexture_dq1qv")
+}, {
+"duration": 2.7,
+"texture": SubResource("AtlasTexture_w8r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ydye")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_b430n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationTree:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/new:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -13.037)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/chatting:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9.48148, -11.8519)]
+}
+
+[sub_resource type="Animation" id="Animation_i7t5h"]
+resource_name = "idle"
+length = 1.00002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationTree:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/new:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -13.037), Vector2(0, -14.2222)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/chatting:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(9.48148, -11.8519), Vector2(9.48148, -13.037), Vector2(9.48148, -11.8519)]
+}
+
+[sub_resource type="Animation" id="Animation_oj8y3"]
+resource_name = "walk_right"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationTree:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/new:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -13.037), Vector2(0, -14.2222), Vector2(0, -13.037), Vector2(0, -14.2222)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_res4i"]
+_data = {
+"RESET": SubResource("Animation_b430n"),
+"idle": SubResource("Animation_i7t5h"),
+"walk_right": SubResource("Animation_oj8y3")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_jwwbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_80pns")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ihbbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.84375, 0.84375)
+texture = ExtResource("1_pu7em")
+hframes = 7
+vframes = 9
+
+[node name="chatting" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(9.48148, -11.8519)
+scale = Vector2(0.677249, 0.592593)
+texture = ExtResource("3_6p3uj")
+region_enabled = true
+region_rect = Rect2(0.972015, 128.571, 14.0219, 13.73)
+
+[node name="NewPiskel(4)" type="AnimatedSprite2D" parent="Sprite2D/chatting"]
+position = Vector2(2.74181e-06, -2)
+scale = Vector2(0.21875, 0.25)
+sprite_frames = SubResource("SpriteFrames_ndrql")
+autoplay = "default"
+frame_progress = 0.858641
+
+[node name="new" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, -13.037)
+scale = Vector2(0.474074, 0.474074)
+texture = ExtResource("3_6p3uj")
+region_enabled = true
+region_rect = Rect2(50.6852, 80.2679, 10.628, 15.3698)
+
+[node name="quest_complete" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(1.19209e-07, -13.037)
+scale = Vector2(0.457912, 0.457912)
+texture = ExtResource("3_6p3uj")
+region_enabled = true
+region_rect = Rect2(33.8388, 80.9058, 11.6704, 14.1592)
+
+[node name="AnimationTree" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_res4i")
+}
+speed_scale = 0.3
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

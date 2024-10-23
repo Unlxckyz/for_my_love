@@ -3,8 +3,8 @@ extends Area2D
 var is_active: bool = true  # Variável para controlar a atividade do teleporter
 @onready var timer = $Timer
 
-func find_closest_marker(player_position: Vector2) -> Marker2D:
-	var closest_marker: Marker2D = null
+func find_closest_marker(player_position: Vector2) -> Area2D:
+	var closest_marker: Area2D = null
 	var min_distance = INF
 	
 	#obtem os nós ne de teleport
@@ -12,7 +12,7 @@ func find_closest_marker(player_position: Vector2) -> Marker2D:
 
 	# Itera pelos nós do grupo
 	for marker in markers:
-		if marker is Marker2D: 
+		if marker is Area2D: 
 			var distance = player_position.distance_to(marker.global_position)
 			
 			# Define uma distância mínima aceitável para ignorar o marcador atual
@@ -35,7 +35,7 @@ func _on_body_entered(body: Node2D) -> void:
 			# Desativa o teleporter
 			timer.start()
 
-# Quando o timer acaba, reativa o teleporter
+# Quando o timer acaba, reativa o tp
 func _on_timer_timeout() -> void:
 	is_active = true
 	# Reativa a colisão do player após um tempo
