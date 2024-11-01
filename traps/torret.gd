@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func shoot_bullet():
 	var bullet = bullet_preload.instantiate()
-	bullet.direction = direction
+	bullet.set_direction(direction)
 	bullet.position = spawn.global_position
 	bullet.rotation = direction.angle()
 	var bullet_animation = bullet.get_node("AnimationPlayer")

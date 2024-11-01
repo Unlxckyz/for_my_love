@@ -1,5 +1,5 @@
 extends ProgressBar
-
+#Healthbar by tutorial
 
 @onready var timer = $Timer
 @onready var damage_bar = $DamageBar

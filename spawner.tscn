@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn5drpf4ftoot"]
+
+[ext_resource type="Script" path="res://spawner.gd" id="1_a1gyt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_14mix"]
+
+[node name="Node" type="Node2D"]
+
+[node name="spawner" type="Marker2D" parent="."]
+script = ExtResource("1_a1gyt")
+qtd_spawn = 3
+
+[node name="Timer" type="Timer" parent="spawner"]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_14mix")
+debug_color = Color(0.933869, 0.187373, 0.44992, 0.42)

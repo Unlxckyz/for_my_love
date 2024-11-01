@@ -1,0 +1,19 @@
+- Como faço para entrar nos esgotos?
+	Alduin: Siga pelo portão a esquerda, mas tome cuidado onde pisa. E fique de olhos abertos para as armadilhas e em quem vai confiar por ai.
+	jump 
+- Uma guardiã do fogo é o que?
+	Alduin:  É uma entidade antiga, um farol de luz em meio à escuridão. Ela é a guardiã das chamas eternas. Suas chamas não são meras fontes de calor;,elas possuem o poder de curar corações quebrados e revelar o caminho... serão de grande ajuda caso realmente esse for seu destino
+	- Mas onde eu encontro elas?
+		Alduin: Ai que é a parte dificil, você não as encontra elas tem que querer te encontrar. Mas você parece ter um coração puro, só precisa demonstrar coragem.
+		jump 
+- O que é o ser do esgoto?
+	Alduin: Ah... alguns diriam que é um rato gigante, mas ele é diferente... muito mais inteligente.
+	- Porque você não mata ele?
+		Alduin: Guardo esses portões para que nenhum mal saia daqui. Apesar de que nem sempre consigo conte-los.
+		jump 
+- Porque voce não sucumbe?
+	Alduin: Nessa camada, minha barreira consegue suportar.
+	Alduin: Mas os perigos que aguardam mais profundamente, eu não duraria muito
+	jump 
+- Sair
+	[signal arg="exit_mage"]

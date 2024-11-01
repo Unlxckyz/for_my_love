@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdn1kwbs2kr51"
+path="res://.godot/imported/Hitsound 3.mp3-932e0b22d5e728b0b233526741ba9aa9.mp3str"
+
+[deps]
+
+source_file="res://Player/Hitsound 3.mp3"
+dest_files=["res://.godot/imported/Hitsound 3.mp3-932e0b22d5e728b0b233526741ba9aa9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

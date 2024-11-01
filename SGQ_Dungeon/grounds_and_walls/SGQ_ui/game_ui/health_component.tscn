@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ec2f4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6fux"]
-bg_color = Color(0, 0.670588, 0.105882, 1)
+bg_color = Color(0.572744, 0, 0.212181, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpc5o"]
 bg_color = Color(0.0687983, 0.0687983, 0.0687982, 1)
@@ -41,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rpc5o")
 theme_override_styles/fill = SubResource("StyleBoxFlat_drog0")
-value = 70.0
+value = 90.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,167 @@
+[gd_scene load_steps=15 format=3 uid="uid://et7vkkvgxubv"]
+
+[ext_resource type="Script" path="res://andrik.gd" id="1_ksd40"]
+[ext_resource type="Texture2D" uid="uid://de8k3jdk3pu0l" path="res://npc (2) (1).png" id="1_y8sf7"]
+[ext_resource type="Texture2D" uid="uid://btbl6q0wx31m3" path="res://CharactersDialogue/IconsFlat-16.png" id="2_t320l"]
+[ext_resource type="Texture2D" uid="uid://clwhgydyyqc6s" path="res://CharactersDialogue/New Piskel (4).png" id="3_oes0w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyeca"]
+atlas = ExtResource("3_oes0w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq1qv"]
+atlas = ExtResource("3_oes0w")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8r6c"]
+atlas = ExtResource("3_oes0w")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ydye"]
+atlas = ExtResource("3_oes0w")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5i0x"]
+animations = [{
+"frames": [{
+"duration": 2.4,
+"texture": SubResource("AtlasTexture_vyeca")
+}, {
+"duration": 2.6,
+"texture": SubResource("AtlasTexture_dq1qv")
+}, {
+"duration": 2.7,
+"texture": SubResource("AtlasTexture_w8r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ydye")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c12y6"]
+radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u53vs"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_wuicb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+
+[sub_resource type="Animation" id="Animation_kl56c"]
+resource_name = "idle"
+length = 0.16667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pd4i"]
+_data = {
+"RESET": SubResource("Animation_wuicb"),
+"idle": SubResource("Animation_kl56c")
+}
+
+[node name="Andrik" type="CharacterBody2D"]
+script = ExtResource("1_ksd40")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.844, 0.844)
+texture = ExtResource("1_y8sf7")
+hframes = 7
+vframes = 9
+
+[node name="chatting" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(9.48148, -11.8519)
+scale = Vector2(0.677249, 0.592593)
+texture = ExtResource("2_t320l")
+region_enabled = true
+region_rect = Rect2(0.972015, 128.571, 14.0219, 13.73)
+
+[node name="NewPiskel(4)" type="AnimatedSprite2D" parent="Sprite2D/chatting"]
+position = Vector2(2.74181e-06, -2)
+scale = Vector2(0.21875, 0.25)
+sprite_frames = SubResource("SpriteFrames_w5i0x")
+autoplay = "default"
+
+[node name="new" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, -13.037)
+scale = Vector2(0.474074, 0.474074)
+texture = ExtResource("2_t320l")
+region_enabled = true
+region_rect = Rect2(50.6852, 80.2679, 10.628, 15.3698)
+
+[node name="quest_complete" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(1.19209e-07, -13.037)
+scale = Vector2(0.457912, 0.457912)
+texture = ExtResource("2_t320l")
+region_enabled = true
+region_rect = Rect2(33.8388, 80.9058, 11.6704, 14.1592)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c12y6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u53vs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5pd4i")
+}
+speed_scale = 0.4
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

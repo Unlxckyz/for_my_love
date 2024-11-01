@@ -1,5 +1,5 @@
 extends Node2D
-
+#fora de uso. porem util
 @onready var preload_mob = preload("res://Enemies/rat.tscn")
 @onready var path = $Path2D/PathFollow2D
 @onready var timer = $Timer

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chw32j1w6futa"
+path="res://.godot/imported/04. Mechanical Complex.mp3-f8ae20cc5bd02124a602f9200537260f.mp3str"
+
+[deps]
+
+source_file="res://CharactersDialogue/04. Mechanical Complex.mp3"
+dest_files=["res://.godot/imported/04. Mechanical Complex.mp3-f8ae20cc5bd02124a602f9200537260f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

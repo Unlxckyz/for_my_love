@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://prjcfcptilco"]
+[gd_scene load_steps=10 format=3 uid="uid://prjcfcptilco"]
 
 [ext_resource type="Texture2D" uid="uid://7wk70txgb325" path="res://SGQ_Dungeon/All_Fire_Bullet_Pixel_16x16_00-1.png.png" id="1_ta56u"]
 [ext_resource type="Script" path="res://traps/torret_bullet.gd" id="1_yp5ul"]
@@ -28,6 +28,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireTorrent:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.815686, 0.254902, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FireTorrent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vdq7o"]
@@ -61,6 +85,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.3, 0.2]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireTorrent:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0.2, 1), Color(0, 1, 0.316667, 1), Color(0.109667, 0.94, 0, 1), Color(0.117333, 0.88, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FireTorrent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a5eiy"]
 _data = {
@@ -70,12 +118,22 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ejfmy"]
-radius = 6.0
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_l8n82"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5jr1a"]
+gradient = SubResource("Gradient_l8n82")
+fill = 1
+fill_from = Vector2(0.481651, 0.458716)
+fill_to = Vector2(0.692661, 0.362385)
 
 [node name="TorretBullet" type="Area2D"]
 script = ExtResource("1_yp5ul")
 
 [node name="FireTorrent" type="Sprite2D" parent="."]
+modulate = Color(0, 0.815686, 0.254902, 1)
 position = Vector2(0.5, -0.5)
 scale = Vector2(1.0625, 1.0625)
 texture = ExtResource("1_ta56u")
@@ -93,5 +151,11 @@ speed_scale = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ejfmy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 1)
+color = Color(0, 0.584028, 0.352199, 1)
+texture = SubResource("GradientTexture2D_5jr1a")
+texture_scale = 0.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

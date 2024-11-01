@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk2m608d77s4h"]
+[gd_scene load_steps=19 format=3 uid="uid://dk2m608d77s4h"]
 
 [ext_resource type="Shader" path="res://Player/hit_blink.gdshader" id="1_6pcxs"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_f5grr"]
 [ext_resource type="Texture2D" uid="uid://erhcaqfportf" path="res://SGQ_Dungeon/characters/main/elf.png" id="1_sfdc7"]
+[ext_resource type="AudioStream" uid="uid://bqb3gou1yhopq" path="res://Player/Hit damage 1 (2).wav" id="4_vv58p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wksfc"]
 shader = ExtResource("1_6pcxs")
@@ -73,6 +74,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_8g2wu"]
@@ -232,6 +245,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [5.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ayhqs"]
 resource_name = "hurt_2"
@@ -296,6 +321,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [5.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.33333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_yh3x0"]
@@ -493,6 +530,10 @@ _data = {
 radius = 3.0
 height = 12.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2lo7"]
+radius = 4.0
+height = 12.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("PointWeapon") groups=["Player"]]
 z_index = 1
 material = SubResource("ShaderMaterial_wksfc")
@@ -515,7 +556,7 @@ libraries = {
 speed_scale = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(4.8, 4.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
@@ -528,6 +569,23 @@ shape = SubResource("CapsuleShape2D_rc0qs")
 one_shot = true
 
 [node name="TimerSword" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vv58p")
+volume_db = 5.0
+pitch_scale = 0.89
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_e2lo7")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="TimerSpell" to="." method="_on_timer_spell_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckryancr6i4fe"]
+
+[ext_resource type="Script" path="res://torret_aprimored.gd" id="1_xskq3"]
+[ext_resource type="Texture2D" uid="uid://8myeleh5xlfg" path="res://SGQ_Dungeon/props/animated_props.png" id="2_hqbk4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpkkx"]
+radius = 115.352
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_xskq3")
+
+[node name="AnimatedProps" type="Sprite2D" parent="."]
+texture = ExtResource("2_hqbk4")
+region_enabled = true
+region_rect = Rect2(162.015, 16.9124, 11.1143, 13.1752)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_kpkkx")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

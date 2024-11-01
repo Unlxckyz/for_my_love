@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://s5lstf42iuge"
+path="res://.godot/imported/Deep Cut.mp3-008e30573084b79ac254a45d5a12b1af.mp3str"
+
+[deps]
+
+source_file="res://Player/Deep Cut.mp3"
+dest_files=["res://.godot/imported/Deep Cut.mp3-008e30573084b79ac254a45d5a12b1af.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

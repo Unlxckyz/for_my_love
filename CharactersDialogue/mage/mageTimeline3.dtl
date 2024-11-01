@@ -1,0 +1,7 @@
+Alduin: Você tem coragem. Eu tenho um presente pra você. Tome pegue.
+(Ele lhe da um livro).
+Alduin: Você só precisa canalizar a sua força com o livro, o resto ele fará por você, quanto mais forte é sua vontade, mais forte será a magia.
+Aperte com botão direito do mouse para utilizar.
+Alduin: Boa sorte. Você está perto de encontrar com ele.
+[signal arg="get_tome"]
+[signal arg="exit_mage"]

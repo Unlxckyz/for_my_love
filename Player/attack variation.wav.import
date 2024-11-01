@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hugfx0tgnila"
+path="res://.godot/imported/attack variation.wav-be9c4f87507d33790ff16f784aa4752a.sample"
+
+[deps]
+
+source_file="res://Player/attack variation.wav"
+dest_files=["res://.godot/imported/attack variation.wav-be9c4f87507d33790ff16f784aa4752a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

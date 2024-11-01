@@ -1,0 +1,125 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjkhoeqse141p"]
+
+[ext_resource type="Texture2D" uid="uid://bulxwg41ddpo" path="res://SGQ_Dungeon/weapons_and_projectiles/projectiles_animated.png" id="1_crpwj"]
+[ext_resource type="Script" path="res://axe_bullet.gd" id="1_m5g7g"]
+[ext_resource type="PackedScene" uid="uid://d4ew67eu36jgw" path="res://shadow_effect.tscn" id="3_0wh2e"]
+
+[sub_resource type="Animation" id="Animation_8a88s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProjectilesAnimated:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProjectilesAnimated:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.192157, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ud78h"]
+resource_name = "fire"
+length = 0.26667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProjectilesAnimated:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProjectilesAnimated:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.192157, 1, 1), Color(0.172549, 0.192157, 1, 1), Color(0.709804, 0.988235, 0.380392, 1), Color(0.756863, 0.0235294, 0.482353, 1), Color(0, 0.458689, 0.941078, 1), Color(0.164706, 1, 0.0666667, 1), Color(0.60329, 0.00228005, 0.834083, 1), Color(0, 1, 0.156863, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xg641"]
+_data = {
+"RESET": SubResource("Animation_8a88s"),
+"fire": SubResource("Animation_ud78h")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3qg7"]
+radius = 6.0
+
+[node name="axe" type="Node2D"]
+script = ExtResource("1_m5g7g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xg641")
+}
+autoplay = "fire"
+speed_scale = 0.5
+
+[node name="ProjectilesAnimated" type="Sprite2D" parent="."]
+modulate = Color(1, 0.192157, 1, 1)
+position = Vector2(0, -2)
+scale = Vector2(1.16406, 1.16406)
+texture = ExtResource("1_crpwj")
+hframes = 8
+vframes = 6
+frame = 24
+
+[node name="shadow" parent="ProjectilesAnimated" instance=ExtResource("3_0wh2e")]
+position = Vector2(-0.859062, 0)
+scale = Vector2(0.859062, 0.859062)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_p3qg7")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

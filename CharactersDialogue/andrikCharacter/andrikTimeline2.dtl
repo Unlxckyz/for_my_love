@@ -1,0 +1,15 @@
+- Por que a caverna tem essa energia estranha?
+	andrik: A caverna… ela sente, observa. Algumas histórias dizem que é uma boca aberta, esperando engolir o que for mais puro ou mais corrompido.
+	- Mas por quê? Quem criou isso?
+		andrik: Quem? Ah, é a pergunta certa. Respostas? Menina, nem os mortos têm certeza disso… mas já te disse, a caverna guarda segredos e, talvez, uma fome.
+		jump 
+- Andrik, você sempre esteve aqui?
+	andrik: Sempre? Quem pode dizer? Às vezes, sinto que nasci e morri neste lugar ao mesmo tempo. Mas quem sou eu para entender? Talvez seja apenas um observador… ou só um eco de quem eu fui.
+	- E você ainda lembra quem foi?
+		andrik: Uma pergunta astuta. Mas não… so sei que sou andrik e andrik só sei que sou. Mas talvez, algum dia, quando a luz volta, esses pedaços talvez retornem... pelo menos é o que me resta acreditar.
+		jump 
+- Como consegue caminhas nesse veneno?
+	andrik: Segredinho sujo do andrik, talvez um dia eu te conte. Há
+	jump 
+- Sair
+	[signal arg="exit_andrik"]

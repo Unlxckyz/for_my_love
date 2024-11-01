@@ -1,0 +1,16 @@
+Alduin: Ah, você… Você tem a coragem de uma chama ao vento. Mas… coragem apenas não te protegerá...
+- O que você quer dizer? Acha que não sou capaz?
+	Alduin: Não se trata de ser capaz… é sobre estar preparada. {Nome}
+	- Como sabe meu nome?
+		Alduin: A força que te guia é poderosa, mas pra adentrar o coração das trevas precisará de um artefato tocado pelas sombras e uma guardiã do fogo.
+		- Como eu consigo isso?
+			Alduin: Ah um ser nas profudenzas do esgoto, que foi tocado pela sombra, talvez...
+			Alduin: Talvez... possamos extrair a sombra dele, e deixa eu ver....
+			Alduin: (Ele olha entre seus pertences)
+			Alduin: Ah sim... está aqui, acho que isso servira.
+			Alduin: (Ele mostra o que parece ser uma Lamparina)
+			Alduin: Com a essência desse ser e a benção da guardiã, poderá sim adentrar as trevas.
+			- Porque eu preciso disso tudo?
+				Alduin: Sem a guardiã será impossivel sua jornada e sem o artefato, não sobrevivera minutos dentro das sombras.
+				Alduin: Veja bem, aqui é so a superficie, nem se compara ao que te espera lá embaixo.
+				[signal arg="exit_mage"]

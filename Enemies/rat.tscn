@@ -1,14 +1,30 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqbdlyi3ssg6v"]
+[gd_scene load_steps=22 format=3 uid="uid://cqbdlyi3ssg6v"]
 
 [ext_resource type="Script" path="res://Enemies/rat.gd" id="1_m5ro8"]
 [ext_resource type="Texture2D" uid="uid://ca7rm03huvl0o" path="res://SGQ_Dungeon/all_unclassified/rat.png" id="2_40uk8"]
 [ext_resource type="Shader" path="res://Player/hit_blink.gdshader" id="2_kptnh"]
 [ext_resource type="Texture2D" uid="uid://erhcaqfportf" path="res://SGQ_Dungeon/characters/main/elf.png" id="3_110ap"]
+[ext_resource type="AudioStream" uid="uid://bqb3gou1yhopq" path="res://Player/Hit damage 1 (2).wav" id="5_6p4jj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_01pij"]
 resource_local_to_scene = true
 shader = ExtResource("2_kptnh")
 shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="Animation" id="Animation_gx4hm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_m23e4"]
 resource_name = "die"
@@ -104,6 +120,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_3f6vb"]
 resource_name = "idle_right"
@@ -165,6 +193,18 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -316,6 +356,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8c0sf"]
 _data = {
+"RESET": SubResource("Animation_gx4hm"),
 "die": SubResource("Animation_m23e4"),
 "hurt_left": SubResource("Animation_7xo5e"),
 "hurt_right": SubResource("Animation_3f6vb"),
@@ -357,6 +398,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tg2xf"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x7r7k"]
 radius = 6.0
 
 [node name="Rat" type="CharacterBody2D" groups=["Enemies"]]
@@ -401,6 +445,17 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_tg2xf")
 debug_color = Color(0.905414, 0.110164, 0.692896, 0.42)
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_x7r7k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6p4jj")
+pitch_scale = 1.91
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

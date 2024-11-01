@@ -28,6 +28,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [2.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
 
 [sub_resource type="Animation" id="Animation_od5ik"]
 resource_name = "fire"
@@ -55,7 +67,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [2.0]
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i33d3"]
@@ -84,8 +108,10 @@ vframes = 2
 libraries = {
 "": SubResource("AnimationLibrary_i33d3")
 }
+autoplay = "fire"
 speed_scale = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.576471, 1, 1)
+energy = 0.2
 texture = SubResource("GradientTexture2D_67oew")
